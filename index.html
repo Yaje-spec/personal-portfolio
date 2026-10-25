@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About me — Eric Jay Gonzales</title>
+<meta name="description" content="Portfolio of Eric Jay Gonzales, a first-year BSIT student and web developer aspiring to become a software engineer.">
+<meta name="color-scheme" content="light dark">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Sets the saved (or system) theme before first paint so the page never flashes -->
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<noscript><style>.loader{display:none!important}</style></noscript>
+</head>
+
+<body class="is-loading">
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7l10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+</svg>
+
+<!-- ============ Loading screen ============ -->
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Loading portfolio">
+  <div class="loader__top">
+    <span>Eric Jay Gonzales</span>
+    <span>Portfolio — <span class="js-year">2026</span></span>
+  </div>
+
+  <div class="loader__count" aria-hidden="true"><span id="count">0</span><span class="loader__pct">%</span></div>
+
+  <div class="loader__bottom">
+    <div class="loader__bar" aria-hidden="true"><span class="loader__fill"></span></div>
+    <div class="loader__foot">
+      <span class="loader__status" id="loaderStatus">Loading portfolio</span>
+      <button class="enter" id="enterBtn" type="button" disabled>
+        Enter portfolio <span class="enter__arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ App ============ -->
+<div class="app" id="app">
+
+  <!-- Top bar (phones only) -->
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#about">
+      <span class="brand__badge" aria-hidden="true">EJ</span>
+      <span class="brand__text"><strong>Eric Jay Gonzales</strong></span>
+    </a>
+    <button class="icon-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+      <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+    </button>
+  </header>
+
+  <div class="scrim" id="scrim" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="Site navigation">
+    <div class="sidebar__head">
+      <a class="brand" href="#about">
+        <span class="brand__badge" aria-hidden="true">EJ</span>
+        <span class="brand__text">
+          <strong>Eric Jay Gonzales</strong>
+          <small>Web Developer</small>
+        </span>
+      </a>
+      <button class="icon-btn sidebar__collapse" id="collapseBtn" type="button" aria-label="Collapse sidebar" aria-expanded="true" aria-controls="sidebar">
+        <svg class="icon icon--chevron" aria-hidden="true"><use href="#i-chevron"/></svg>
+      </button>
+      <button class="icon-btn sidebar__close" id="closeBtn" type="button" aria-label="Close menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+
+    <nav class="nav" aria-label="Pages">
+      <a class="nav__link" href="#about" data-page="about" title="About me">
+        <svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><span class="nav__label">About me</span>
+      </a>
+      <a class="nav__link" href="#projects" data-page="projects" title="Projects">
+        <svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg><span class="nav__label">Projects</span>
+      </a>
+      <a class="nav__link" href="#stack" data-page="stack" title="Stack">
+        <svg class="icon" aria-hidden="true">
+            <use href="#i-layers"/>
+        </svg>
+        <span class="nav__label">Stack</span>
+      </a>
+      <a class="nav__link" href="#contact" data-page="contact" title="Contact">
+        <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span class="nav__label">Contact</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__foot">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Switch theme">
+        <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <span class="nav__label" id="themeLabel">Light mode</span>
+        <span class="switch" aria-hidden="true"><span class="switch__knob"></span></span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main" id="main">
+    <div class="content">
+
+      <!-- ===== About me ===== -->
+      <section class="page" id="page-about" aria-labelledby="h-about" hidden>
+        <div class="about">
+          <div class="about__text">
+            <p class="eyebrow">01 — About me</p>
+            <h1 id="h-about" tabindex="-1">Hi, I'm Eric Jay Gonzales.</h1>
+            <p class="lead">First-year BSIT student and web developer, aspiring to become a software engineer.</p>
+            <!-- EDIT: write your own short bio -->
+            <p class="muted">[Two or three sentences about what got you into coding and what you want to build.]</p>
+            <div class="actions">
+              <a class="btn btn--solid" href="#projects">View projects</a>
+              <a class="btn btn--outline" href="#contact">Contact me</a>
+            </div>
+          </div>
+          <!-- EDIT: replace the placeholder with <img src="photo.jpg" alt="Eric Jay Gonzales"> -->
+          <div class="about__photo" role="img" aria-label="Photo placeholder">[YOUR PHOTO]</div>
+        </div>
+
+        <div class="grid grid--facts">
+          <div class="fact"><span class="label">Studying</span><span class="fact__value">BSIT · 1st year</span></div>
+          <div class="fact"><span class="label">Role</span><span class="fact__value">Web developer</span></div>
+          <div class="fact"><span class="label">Goal</span><span class="fact__value">Software engineer</span></div>
+        </div>
+      </section>
+
+      <!-- ===== Projects ===== -->
+      <section class="page" id="page-projects" aria-labelledby="h-projects" hidden>
+        <p class="eyebrow">02 — Projects</p>
+        <h1 id="h-projects" tabindex="-1">Things I've built.</h1>
+        <p class="lead lead--narrow">[One line about your best work so far.]</p>
+
+        <!-- EDIT: copy one <article class="card"> per project -->
+        <div class="grid grid--cards">
+          <article class="card">
+            <a class="card__link" href="#projects">
+              <div class="card__media"><div class="card__img">[PROJECT IMAGE]</div><span class="card__arrow" aria-hidden="true">↗</span></div>
+              <div class="card__row"><h2>[PROJECT ONE]</h2><span class="muted">2026</span></div>
+              <p class="muted">[Short description]</p>
+              <ul class="tags"><li class="pill">[Tag]</li><li class="pill">[Tag]</li></ul>
+            </a>
+          </article>
+          <article class="card">
+            <a class="card__link" href="#projects">
+              <div class="card__media"><div class="card__img">[PROJECT IMAGE]</div><span class="card__arrow" aria-hidden="true">↗</span></div>
+              <div class="card__row"><h2>[PROJECT TWO]</h2><span class="muted">2026</span></div>
+              <p class="muted">[Short description]</p>
+              <ul class="tags"><li class="pill">[Tag]</li><li class="pill">[Tag]</li></ul>
+            </a>
+          </article>
+          <article class="card">
+            <a class="card__link" href="#projects">
+              <div class="card__media"><div class="card__img">[PROJECT IMAGE]</div><span class="card__arrow" aria-hidden="true">↗</span></div>
+              <div class="card__row"><h2>[PROJECT THREE]</h2><span class="muted">2026</span></div>
+              <p class="muted">[Short description]</p>
+              <ul class="tags"><li class="pill">[Tag]</li><li class="pill">[Tag]</li></ul>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Stack ===== -->
+      <section class="page" id="page-stack" aria-labelledby="h-stack" hidden>
+        <p class="eyebrow">03 — Stack</p>
+        <h1 id="h-stack" tabindex="-1">What I build with.</h1>
+
+        <!-- EDIT: replace the placeholders with your real skills and tools -->
+        <div class="grid grid--stack">
+          <div class="fact">
+            <h2 class="fact__title">Frontend</h2>
+            <ul class="tags">
+                <li class="pill">[ HTML ]</li>
+                <li class="pill">[ CSS ]</li>
+                <li class="pill">[ JAVASCRIPT ]</li>
+            </ul>
+          </div>
+          <div class="fact">
+            <h2 class="fact__title">Backend</h2>
+            <ul class="tags"><li class="pill">[Skill]</li><li class="pill">[Skill]</li></ul>
+          </div>
+          <div class="fact">
+            <h2 class="fact__title">Tools</h2>
+            <ul class="tags"><li class="pill">[Tool]</li><li class="pill">[Tool]</li><li class="pill">[Tool]</li></ul>
+          </div>
+          <div class="fact">
+            <h2 class="fact__title">Currently learning</h2>
+            <ul class="tags"><li class="pill">[ SOFTWARE ENGINEERING ]</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== Contact ===== -->
+      <section class="page" id="page-contact" aria-labelledby="h-contact" hidden>
+        <p class="eyebrow">04 — Contact</p>
+        <h1 id="h-contact" tabindex="-1">Let's connect.</h1>
+        <p class="lead lead--narrow">Say hello, share an idea, or tell me about your project.</p>
+
+        <!-- EDIT: replace the placeholder addresses and links -->
+        <a class="btn btn--solid btn--lg" href="mailto:your.email@example.com">Send an email →</a>
+
+        <ul class="rows">
+          <li><a class="row" href="mailto:your.email@example.com"><span>[YOUR EMAIL]</span><span aria-hidden="true">↗</span></a></li>
+          <li><a class="row" href="https://github.com/your-username" target="_blank" rel="noopener"><span>[YOUR GITHUB]</span><span aria-hidden="true">↗</span></a></li>
+          <li><a class="row" href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener"><span>[YOUR LINKEDIN]</span><span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </section>
+
+    </div>
+
+    <footer class="footer">© <span class="js-year">2026</span> Eric Jay Gonzales</footer>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
